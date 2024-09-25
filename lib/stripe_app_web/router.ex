@@ -18,6 +18,9 @@ defmodule StripeAppWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/payment/success", PaymentController, :success
+    get "/payment/cancel", PaymentController, :cancel
+    live "/stripe/fixed", StripeLive.Fixed, :fixed
   end
 
   # Other scopes may use custom stacks.

@@ -17,3 +17,8 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Forum: https://elixirforum.com/c/phoenix-forum
   * Source: https://github.com/phoenixframework/phoenix
 # stripe_integration
+
+
+As per Indian regulations, export transactions require a customer name and address. More info here: https://stripe.com/docs/india-exports
+
+Indian Test Visa Card: 4000 0035 6000 0008

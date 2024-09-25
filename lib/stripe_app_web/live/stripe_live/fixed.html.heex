@@ -1,0 +1,47 @@
+<div class="bg-white">
+  <!-- Background color split screen for large screens -->
+  <div class="fixed left-0 top-0 hidden h-full w-full bg-white lg:block" aria-hidden="true"></div>
+
+  <div class="relative mx-auto grid max-w-7xl grid-cols-1 gap-x-16 lg:grid-cols-2 lg:px-8 lg:pt-16">
+    <section aria-labelledby="payment-and-shipping-heading" class="py-16 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:w-full lg:max-w-lg lg:pb-24 lg:pt-0">
+
+      <.form
+        class="space-y-6 pt-10"
+        for={@form}
+        id="stripe-form"
+        phx-change="validate"
+        phx-submit="stripe-checkout">
+        <div class="mx-auto max-w-4xl px-4 lg:max-w-none lg:px-0">
+          <div>
+            <h3 id="contact-info-heading" class="text-lg font-medium text-gray-900">Fixed Payment</h3>
+
+            <div class="mt-6">
+              <label for="email-address" class="block text-sm font-medium text-gray-700">Email address</label>
+              <div class="mt-1">
+                <.input type="email" field={@form[:email]} class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+              </div>
+            </div>
+
+            <div class="mt-6">
+              <label for="payer-name" class="block text-sm font-medium text-gray-700">Name</label>
+              <div class="mt-1">
+                <.input type="text" field={@form[:name]} class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+              </div>
+            </div>
+
+            <div class="mt-6">
+              <label for="payer-amount" class="block text-sm font-medium text-gray-700">Amount</label>
+              <div class="mt-1">
+                <.input type="number" field={@form[:amount]} value="100" readonly="readonly"  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-10 flex justify-end border-t border-gray-200 pt-6">
+            <button type="submit" class="rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">Pay now</button>
+          </div>
+        </div>
+      </.form>
+    </section>
+  </div>
+</div>
