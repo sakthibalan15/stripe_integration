@@ -1,0 +1,48 @@
+<%= if @checkout && @checkout.status == "succeeded" do %>
+  <div class="alert alert-solid-success" role="alert">Your payment went successfully through!</div>
+
+<% end %>
+
+<div>
+      <.header>
+        <:subtitle>Checkout Payment</:subtitle>
+      </.header>
+
+      <.simple_form
+        for={@form}
+        id="checkout-form"
+        phx-change="validate"
+        phx-submit="payment"
+      >
+        <.input field={@form[:email]} type="email" label="Email" />
+        <.input field={@form[:name]} type="text" label="Name" />
+        <.input field={@form[:amount]} type="number" label="Amount" />
+        <.input field={@form[:currency]} type="text" label="Currency" value="INR" />
+        <:actions>
+          <.button phx-disable-with="Saving...">Pay</.button>
+        </:actions>
+      </.simple_form>
+
+      <%= if @intent do %>
+        <.simple_form
+          for={}
+          id="payment-form"
+          data-secret={@intent.client_secret}
+          phx-hook="InitCheckout"
+        >
+          <label for="card-element" class="tag-label">
+            Credit or debit card
+          </label>
+          <div id="card-element" class="tag-input">
+            <!-- A Stripe Element will be inserted here. -->
+          </div>
+
+          <!-- Used to display form errors. -->
+          <div id="card-errors" class="tag-label" role="alert"></div>
+
+          <:actions>
+            <.button phx-disable-with="Saving...">Pay</.button>
+          </:actions>
+        </.simple_form>
+      <% end %>
+    </div>

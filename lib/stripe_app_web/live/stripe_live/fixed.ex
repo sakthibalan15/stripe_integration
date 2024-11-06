@@ -15,7 +15,7 @@ defmodule StripeAppWeb.StripeLive.Fixed do
 
   @impl true
   def handle_event("stripe-checkout", %{"amount" => amount, "email" => email, "name" => name}, socket) do
-    IO.inspect amt: amount, name: name, email: email
+    IO.inspect amt: amount, name: name
     {_key, secret_key} = List.keyfind(@stripe, :stripe_secret_key, 0)
     {_s_key, success_url} = List.keyfind(@stripe, :stripe_success_url, 0)
     {_c_key, cancel_url} = List.keyfind(@stripe, :stripe_cancel_url, 0)
@@ -46,10 +46,7 @@ defmodule StripeAppWeb.StripeLive.Fixed do
       |> Finch.request(StripeApp.Finch)
 
       with {:ok, response} <- request do
-        IO.inspect res: response
         session = response.body |> Jason.decode!()
-
-        IO.inspect(session)
 
         {:noreply,
          socket

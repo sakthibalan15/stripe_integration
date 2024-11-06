@@ -21,6 +21,7 @@ defmodule StripeAppWeb.Router do
     get "/payment/success", PaymentController, :success
     get "/payment/cancel", PaymentController, :cancel
     live "/stripe/fixed", StripeLive.Fixed, :fixed
+    live "/checkout", CheckoutLive.New, :new
   end
 
   # Other scopes may use custom stacks.
